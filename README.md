@@ -115,37 +115,47 @@ User
 - Improved offline AI capabilities
 
 ## System Architecture
-->
-                 USER
-                   │
-        ┌──────────┴──────────┐
-        │                     │
-     Voice                  Camera
-        │                     │
-        └──────────┬──────────┘
-                   ↓
-             Flutter App
-                   ↓
-              Flask API
-                   ↓
-          Request Processing
-                   ↓
-      ┌────────────┼────────────┐
-      ↓            ↓            ↓
-   Whisper      Computer       AI
-                Vision         LLM
-      │            │            │
-      │       ┌────┼────┐       │
-      │       ↓    ↓    ↓       │
-      │      OCR YOLO Currency  │
-      │                         │
-      └───────────┬─────────────┘
-                  ↓
-          MySQL / External APIs
-                  ↓
-             Result / TTS
-                  ↓
-                 USER
+
+```mermaid
+flowchart TD
+
+    U[User]
+
+    U -->|Voice / Text| F[Flutter Frontend]
+    U -->|Camera| F
+
+    F -->|HTTP / REST API| B[Flask Backend]
+
+    B --> P[Request Processing]
+
+    P --> W[Whisper<br/>Speech-to-Text]
+    P --> V[Computer Vision]
+    P --> A[AI / Local LLM]
+    P --> N[Navigation & Location]
+
+    V --> O[OCR]
+    V --> Y[YOLOv8]
+    V --> C[Currency Recognition]
+    V --> I[Image Quality Assessment]
+    V --> S[Scene Understanding]
+
+    N --> G[GPS / Maps API]
+
+    B --> D[(MySQL Database)]
+
+    P --> T[Translation Services]
+
+    W --> R[Recognized Text]
+    O --> R
+    Y --> R
+    C --> R
+    S --> R
+    A --> R
+    N --> R
+    T --> R
+
+    R --> TTS[Text-to-Speech]
+    TTS --> U
 
 
                  
