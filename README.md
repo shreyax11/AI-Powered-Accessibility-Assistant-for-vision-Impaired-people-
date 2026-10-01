@@ -128,10 +128,10 @@ flowchart TD
 
     B --> P[Request Processing]
 
-    P --> W[Whisper<br/>Speech-to-Text]
+    P --> W[Whisper - Speech to Text]
     P --> V[Computer Vision]
-    P --> A[AI / Local LLM]
-    P --> N[Navigation & Location]
+    P --> A[AI - Local LLM]
+    P --> N[Navigation and Location]
 
     V --> O[OCR]
     V --> Y[YOLOv8]
@@ -145,18 +145,23 @@ flowchart TD
 
     P --> T[Translation Services]
 
-    W --> R[Recognized Text]
+    W --> R[Result Processing]
     O --> R
     Y --> R
     C --> R
+    I --> R
     S --> R
     A --> R
-    N --> R
+    G --> R
     T --> R
 
-    R --> TTS[Text-to-Speech]
+    R --> TTS[Text to Speech]
     TTS --> U
+```
 
+## Database
+
+The project uses MySQL for persistent user-related data.
 
                  
 ## Database
